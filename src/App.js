@@ -53,7 +53,8 @@ function App() {
       return [...users.filter(item => item.id !== event)]
     });
   }
- function handleSubmit(event) { 
+ async function handleSubmit(event) {
+    event.preventDefault(); 
     const newUser ={
       id: Math.floor(Math.random() * 1000000000),
       createdDate: event.target.createdDate.value,
@@ -63,9 +64,10 @@ function App() {
       userName: event.target.userName.value,
       registrationNumber: event.target.registrationNumber.value,
     }
-    setUsers((users) => {
+     await setUsers((users) => {
       return [...users, newUser]
     });
+    setIsOpen(!isOpen);
   };
   return (
     <div className="App">
